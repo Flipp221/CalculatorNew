@@ -1,45 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
+
 
 namespace App5
 {
-    public partial class MainPage : ContentPage
+    public class ModelView : INotifyPropertyChanged
     {
+        string resultText { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<ModelView> modelViews { get; set; }
+        public ICommand Ravno { protected set; get; }
+        public ICommand X2 { protected set; get; }
+        public ICommand chisla { protected set; get; }
+        public ICommand Delenie { protected set; get; }
+        public INavigation Navigation { get; set; }
+
         int currentState = 1;
         string myoperator;
         double firstNumber, secondNumber;
 
-        public MainPage()
+        public ModelView()
         {
-            InitializeComponent();
+            Ravno = new Command(OnCalculate);
+            X2 = new Command(squareclicked);
+            chisla = new Command(OnSelectNumber);
+            Delenie = new Command(OnSelectOperator);
             OnClear(this, null);
         }
-
-        void OnSelectNumber(object sender, EventArgs e)
+        protected void OnPropertyChanged(string propName)
         {
-            Button button = (Button)sender;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+
+        private void OnSelectNumber(object num)
+        {
+            Button button = (Button)num;
 
 
             string pressed = button.Text;
-            if (this.resultText.Text == "0" || currentState < 0)
+            if (resultText == "0" || currentState < 0)
             {
-                this.resultText.Text = "";
+                resultText = "";
 
-                if (currentState < 0) 
+                if (currentState < 0)
                     currentState *= -1;
             }
 
-            this.resultText.Text += pressed;
+            this.resultText += pressed;
 
             double number;
-            if (double.TryParse(this.resultText.Text, out number))
+            if (double.TryParse(this.resultText, out number))
             {
-                this.resultText.Text = number.ToString("N0");
+                resultText = number.ToString("N0");
                 if (currentState == 1)
                 {
                     firstNumber = number;
@@ -51,31 +69,31 @@ namespace App5
             }
         }
 
-        void OnSelectOperator(object sender, EventArgs e)
+        private void OnSelectOperator(object exp)
         {
             currentState = -2;
-            Button button = (Button)sender;
+            Button button = (Button)exp;
             string pressed = button.Text;
             myoperator = pressed;
         }
 
-        void OnClear(object sender, EventArgs e)
+        private void OnClear(object sender, EventArgs e)
         {
             firstNumber = 0;
             secondNumber = 0;
             currentState = 1;
-            this.resultText.Text = "0";
+            resultText = "0";
         }
 
-        void OnPercentage(object sender, EventArgs e)
+        private void OnPercentage(object sender, EventArgs e)
         {
 
             if ((currentState == -1) || (currentState == 1))
             {
 
-                
+
                 var result = firstNumber / 100;
-                this.resultText.Text = result.ToString();
+                resultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
 
@@ -83,39 +101,39 @@ namespace App5
 
 
         }
-        void OnCalculate(object sender, EventArgs e) 
+        private void OnCalculate(object cal)
         {
             if (currentState == 2)
             {
                 var result = OperatorHelper.Calculate(firstNumber, secondNumber, myoperator);
 
-                this.resultText.Text = result.ToString();
+                resultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
         }
-        void OnSquareRoot(object sender, EventArgs e) 
+        private void OnSquareRoot(object sender, EventArgs e)
         {
             if ((currentState == -1) || (currentState == 1))
             {
-                
+
                 var result = Math.Sqrt(firstNumber);
 
-                this.resultText.Text = result.ToString();
+                resultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
         }
 
 
-        private void squareclicked(object sender, EventArgs e)
+        private void squareclicked(object clic)
         {
 
             if ((currentState == -1) || (currentState == 1))
             {
-                
+
                 var result = firstNumber * firstNumber;
-                this.resultText.Text = result.ToString();
+                resultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
@@ -145,6 +163,6 @@ namespace App5
             }
             return result;
 
-       }
-   }
+        }
+    }
 }
