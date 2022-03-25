@@ -3,12 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
              x:Class="App5.View.MainPage">
 
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness">
-            <OnPlatform.iOS>0,20,0,0</OnPlatform.iOS>
-        </OnPlatform>
-    </ContentPage.Padding>
-
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -39,38 +33,26 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="resultText" Text="{Binding resultText}" FontSize="48" FontAttributes="Bold" BackgroundColor="Black"
+        <Label x:Name="resultText" Text="{Binding ResultText}" FontSize="48" FontAttributes="Bold" BackgroundColor="Black"
               TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
               LineBreakMode="NoWrap" Grid.ColumnSpan="4" />
 
 
-        <Button Text="AC" Grid.Row="1" Grid.Column="0" Style="{StaticResource infostyle}" BackgroundColor="#808080" />
-        <Button Text="√" Grid.Row="1" Grid.Column="1" Style="{StaticResource infostyle}" BackgroundColor="#808080"  FontSize="36"/>
-        <Button BorderRadius="30" Text="%" Grid.Row="1" Grid.Column="2" Style="{StaticResource infostyle}"  BackgroundColor="#808080"/>
-
+        <Button x:Name="Delete" Text="AC" Command="{Binding Delete}" CommandParameter="{x:Reference Delete}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource infostyle}" BackgroundColor="#808080" />
         <Button x:Name="Chisla" Text="7" Command ="{Binding Chisla}" CommandParameter="{x:Reference Chisla}" Grid.Row="2" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
-        <Button Text="8" Command ="{Binding Chisla}" Grid.Row="2" Grid.Column="1" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
-        <Button Text="9" Command ="{Binding Chisla}" Grid.Row="2" Grid.Column="2" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
-
-        <Button Text="4" Command ="{Binding Chisla}" Grid.Row="3" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
-
-        <Button Text="5" Command ="{Binding Chisla}" Grid.Row="3" Grid.Column="1" BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
-        <Button Text="6" Command ="{Binding Chisla}"  Grid.Row="3" Grid.Column="2"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
-
-        <Button Text="1" Command ="{Binding Chisla}"   Grid.Row="4" Grid.Column="0"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
-        <Button Text="2" Command ="{Binding Chisla}" Grid.Row="4" Grid.Column="1"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
-        <Button Text="3" Command ="{Binding Chisla}"   Grid.Row="4" Grid.Column="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
-        <Button Text="0" Command ="{Binding Chisla}"   Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
-
-
-
-        <Button Text="x2" Grid.Row="5" Grid.Column="2" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
-
-        <Button Text="=" Grid.Row="5" Grid.Column="3"  BackgroundColor="#EE7600"    Style="{StaticResource infostyle}"/>
-
-        <Button Text="÷" Grid.Row="1" Grid.Column="3" BackgroundColor="#EE7600"  Style="{StaticResource infostyle}"/>
-        <Button Text="*" Grid.Row="2" Grid.Column="3" BackgroundColor="#EE7600" Style="{StaticResource infostyle}" />
-        <Button Text="-" Grid.Row="3" Grid.Column="3" BackgroundColor="#EE7600"  Style="{StaticResource infostyle}" />
-        <Button Text="+" Grid.Row="4" Grid.Column="3" BackgroundColor="#EE7600"   Style="{StaticResource infostyle}" />
+        <Button x:Name="Eat" Text="8" Command ="{Binding Chisla}" CommandParameter="{x:Reference Eat}" Grid.Row="2" Grid.Column="1" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button x:Name="Nine" Text="9" Command ="{Binding Chisla}" CommandParameter="{x:Reference Nine}" Grid.Row="2" Grid.Column="2" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button x:Name="Four"  Text="4" Command ="{Binding Chisla}" CommandParameter="{x:Reference Four}" Grid.Row="3" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
+        <Button x:Name="Five" Text="5" Command ="{Binding Chisla}" CommandParameter="{x:Reference Five}"  Grid.Row="3" Grid.Column="1" BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
+        <Button x:Name="Six" Text="6" Command ="{Binding Chisla}" CommandParameter="{x:Reference Six}" Grid.Row="3" Grid.Column="2"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button x:Name="One" Text="1" Command ="{Binding Chisla}"  CommandParameter="{x:Reference One}" Grid.Row="4" Grid.Column="0"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
+        <Button x:Name="Two" Text="2" Command ="{Binding Chisla}" CommandParameter="{x:Reference Two}" Grid.Row="4" Grid.Column="1"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
+        <Button x:Name="Three" Text="3" Command ="{Binding Chisla}"   CommandParameter="{x:Reference Three}" Grid.Row="4" Grid.Column="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
+        <Button x:Name="Zero" Text="0" Command ="{Binding Chisla}"   CommandParameter="{x:Reference Zero}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
+        <Button x:Name="Ravno" Command="{Binding Ravno}" CommandParameter="{x:Reference Ravno}" Text="=" Grid.Row="5" Grid.Column="2"  BackgroundColor="#EE7600"    Style="{StaticResource infostyle}"/>
+        <Button x:Name="Del" Command="{Binding Delenie}" CommandParameter="{x:Reference Del}" Text="÷" Grid.Row="2" Grid.Column="3" BackgroundColor="#EE7600"  Style="{StaticResource infostyle}"/>
+        <Button x:Name="Umn" Command="{Binding Delenie}" CommandParameter="{x:Reference Umn}" Text="*" Grid.Row="3" Grid.Column="3" BackgroundColor="#EE7600" Style="{StaticResource infostyle}" />
+        <Button x:Name="Min" Command="{Binding Delenie}" CommandParameter="{x:Reference Min}" Text="-" Grid.Row="4" Grid.Column="3" BackgroundColor="#EE7600"  Style="{StaticResource infostyle}" />
+        <Button x:Name="Plus" Command="{Binding Delenie}" CommandParameter="{x:Reference Plus}" Text="+" Grid.Row="5" Grid.Column="3" BackgroundColor="#EE7600"   Style="{StaticResource infostyle}" />
     </Grid>
 </ContentPage>

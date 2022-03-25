@@ -7,17 +7,19 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 
-namespace App5
+namespace App5.ViewModel
 {
     public class ModelView : INotifyPropertyChanged
     {
-        string resultText { get; set; }
+        private string resultText;
+        public string ResultText { get => resultText; set { resultText = value; OnPropertyChanged("ResultText"); } }
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<ModelView> modelViews { get; set; }
         public ICommand Ravno { protected set; get; }
         public ICommand X2 { protected set; get; }
         public ICommand Chisla { protected set; get; }
         public ICommand Delenie { protected set; get; }
+        public ICommand Delete { protected set; get; }
         public INavigation Navigation { get; set; }
 
         int currentState = 1;
@@ -30,7 +32,7 @@ namespace App5
             X2 = new Command(squareclicked);
             Chisla = new Command(OnSelectNumber);
             Delenie = new Command(OnSelectOperator);
-            OnClear(this, null);
+            Delete = new Command(OnClear);
         }
         protected void OnPropertyChanged(string propName)
         {
@@ -44,20 +46,20 @@ namespace App5
 
 
             string pressed = button.Text;
-            if (this.resultText == "0" || currentState < 0)
+            if (ResultText == "0" || currentState < 0)
             {
-                this.resultText = "";
+                ResultText = "";
 
                 if (currentState < 0)
                     currentState *= -1;
             }
 
-            this.resultText += pressed;
+            ResultText += pressed;
 
             double number;
-            if (double.TryParse(this.resultText, out number))
+            if (double.TryParse(ResultText, out number))
             {
-                this.resultText = number.ToString("N0");
+                ResultText = number.ToString("N0");
                 if (currentState == 1)
                 {
                     firstNumber = number;
@@ -77,12 +79,12 @@ namespace App5
             myoperator = pressed;
         }
 
-        private void OnClear(object sender, EventArgs e)
+        private void OnClear(object sender)
         {
             firstNumber = 0;
             secondNumber = 0;
             currentState = 1;
-            resultText = "0";
+            ResultText = "0";
         }
 
         private void OnPercentage(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace App5
 
 
                 var result = firstNumber / 100;
-                resultText = result.ToString();
+                ResultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
 
@@ -107,7 +109,7 @@ namespace App5
             {
                 var result = OperatorHelper.Calculate(firstNumber, secondNumber, myoperator);
 
-                resultText = result.ToString();
+                ResultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
@@ -119,7 +121,7 @@ namespace App5
 
                 var result = Math.Sqrt(firstNumber);
 
-                resultText = result.ToString();
+                ResultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
@@ -133,7 +135,7 @@ namespace App5
             {
 
                 var result = firstNumber * firstNumber;
-                resultText = result.ToString();
+                ResultText = result.ToString();
                 firstNumber = result;
                 currentState = -1;
             }
