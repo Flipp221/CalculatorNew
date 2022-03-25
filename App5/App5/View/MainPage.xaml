@@ -48,19 +48,19 @@
         <Button Text="√" Grid.Row="1" Grid.Column="1" Style="{StaticResource infostyle}" BackgroundColor="#808080"  FontSize="36"/>
         <Button BorderRadius="30" Text="%" Grid.Row="1" Grid.Column="2" Style="{StaticResource infostyle}"  BackgroundColor="#808080"/>
 
-        <Button Text="" Grid.Row="2" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
-        <Button Text="8" Grid.Row="2" Grid.Column="1" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
-        <Button Text="9" Grid.Row="2" Grid.Column="2" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button x:Name="Chisla" Text="7" Command ="{Binding Chisla}" CommandParameter="{x:Reference Chisla}" Grid.Row="2" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
+        <Button Text="8" Command ="{Binding Chisla}" Grid.Row="2" Grid.Column="1" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button Text="9" Command ="{Binding Chisla}" Grid.Row="2" Grid.Column="2" BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
 
-        <Button Text="4" Grid.Row="3" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
+        <Button Text="4" Command ="{Binding Chisla}" Grid.Row="3" Grid.Column="0"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
 
-        <Button Text="5" Grid.Row="3" Grid.Column="1" BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
-        <Button Text="6" Grid.Row="3" Grid.Column="2"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
+        <Button Text="5" Command ="{Binding Chisla}" Grid.Row="3" Grid.Column="1" BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
+        <Button Text="6" Command ="{Binding Chisla}"  Grid.Row="3" Grid.Column="2"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}" />
 
-        <Button Text="1" Grid.Row="4" Grid.Column="0"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
-        <Button Text="2" Grid.Row="4" Grid.Column="1"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
-        <Button Text="3" Grid.Row="4" Grid.Column="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
-        <Button Text="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
+        <Button Text="1" Command ="{Binding Chisla}"   Grid.Row="4" Grid.Column="0"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
+        <Button Text="2" Command ="{Binding Chisla}" Grid.Row="4" Grid.Column="1"  BackgroundColor="#2e2e2e"  Style="{StaticResource infostyle}"/>
+        <Button Text="3" Command ="{Binding Chisla}"   Grid.Row="4" Grid.Column="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}" />
+        <Button Text="0" Command ="{Binding Chisla}"   Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  BackgroundColor="#2e2e2e" Style="{StaticResource infostyle}"/>
 
 
 

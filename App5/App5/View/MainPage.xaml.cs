@@ -20,6 +20,7 @@ namespace App5.View
         {
             InitializeComponent();
             BindingContext = new ModelView { Navigation = this.Navigation };
-        }
+            
+        }      
     }
 }

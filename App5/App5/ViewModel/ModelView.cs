@@ -16,7 +16,7 @@ namespace App5
         public ObservableCollection<ModelView> modelViews { get; set; }
         public ICommand Ravno { protected set; get; }
         public ICommand X2 { protected set; get; }
-        public ICommand chisla { protected set; get; }
+        public ICommand Chisla { protected set; get; }
         public ICommand Delenie { protected set; get; }
         public INavigation Navigation { get; set; }
 
@@ -28,7 +28,7 @@ namespace App5
         {
             Ravno = new Command(OnCalculate);
             X2 = new Command(squareclicked);
-            chisla = new Command(OnSelectNumber);
+            Chisla = new Command(OnSelectNumber);
             Delenie = new Command(OnSelectOperator);
             OnClear(this, null);
         }
@@ -38,15 +38,15 @@ namespace App5
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        private void OnSelectNumber(object num)
+        private void OnSelectNumber(object sender)
         {
-            Button button = (Button)num;
+            Button button = (Button)sender;
 
 
             string pressed = button.Text;
-            if (resultText == "0" || currentState < 0)
+            if (this.resultText == "0" || currentState < 0)
             {
-                resultText = "";
+                this.resultText = "";
 
                 if (currentState < 0)
                     currentState *= -1;
@@ -57,7 +57,7 @@ namespace App5
             double number;
             if (double.TryParse(this.resultText, out number))
             {
-                resultText = number.ToString("N0");
+                this.resultText = number.ToString("N0");
                 if (currentState == 1)
                 {
                     firstNumber = number;
